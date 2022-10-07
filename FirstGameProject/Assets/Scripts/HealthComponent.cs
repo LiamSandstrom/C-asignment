@@ -6,11 +6,13 @@ using System;
 public class HealthComponent : MonoBehaviour
 {
     private float health;
+    public Playerwin playerwin;
     public float maxHealth = 150f;
     public event Action OnPlayerDeath;
     ParticleSystem particlesystem;
     GameObject PlayerObj;
     public HealthBar healthbar;
+    public int index;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,17 @@ public class HealthComponent : MonoBehaviour
             {
                 OnPlayerDeath();
             }
-            Destroy(gameObject);
+             if(index == 1)
+            {
+                playerwin.player1 = true;
+                Destroy(gameObject);
+            }
+                if(index == 2)
+            {
+                playerwin.player2 = true;
+                Destroy(gameObject);
+            }
+            
         }
         
         healthbar.SetHealth(health);
